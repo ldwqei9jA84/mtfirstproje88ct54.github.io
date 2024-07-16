@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            --bg-color: #141414;
+            --container-bg-color: #1C1F24;
+            --button-bg-color: #282B30;
+            --text-color: #fff;
+            --box-shadow-color: rgba(0, 0, 0, 0.5);
+            --blue-circle-color: #1e90ff;
+            --mining-bg-color: #2b2b2b;
+            --mining-time-bg-color: #1e90ff;
+            --footer-bg-color:#2b2b2b;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .header {
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .header img {
+            width: 100px;
+            height: auto;
+        }
+
+        .tasks-list {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            background-size: cover;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 20px;
+            flex-grow: 1;
+        }
+        .invite-section {
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .invite-section h1 {
+            margin-top: 40px;
+            font-size: 24px;
+        }
+
+        .invite-section h2 {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .invite-section p {
+            font-size: 16px;
+        }
+
+        .invite-button {
+            margin: 20px 0;
+            padding: 10px 15px;
+            font-size: 14px;
+            color: black;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            border: 10px solid transparent;
+            border-image: url('https://i.ibb.co/5xTn2Zw/Rectangle-9.png') 30 stretch;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 75%;
+            margin-left: 12.5%;
+        }
+
+        .invite-button:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .invite-button img {
+            width: 26px;
+            margin-left: 5px;
+        }
+
+        .invite-button-placeholder {
+            width: 75%; /* Измените этот размер по своему усмотрению */
+            height: auto;
+            display: block;
+            margin: 0 auto; /* Центрирование изображения */
+        }
+
+        .copy-link-button {
+            margin-bottom: 10px;
+            padding: 10px 15px;
+            font-size: 18px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            border: 10px solid transparent;
+            border-image: url('https://i.ibb.co/5xTn2Zw/Rectangle-9.png') 30 stretch;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 90%;
+            margin-left: 5%;
+        }
+
+        .copy-link-button:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 8px 0;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 10px;
+        }
+
+        .task-item:last-child {
+            border-bottom: none;
+        }
+
+        .task-text {
+            flex-grow: 1;
+            text-align: left;
+            font-size: 15px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .task-text span {
+            font-size: 12px;
+            opacity: 0.6;
+        }
+
+        .task-button {
+            background: rgba(0, 0, 0, 0.5);
+            width: 100px;
+            height: 50px;
+            border: 10px solid transparent;
+            border-image: url('https://i.ibb.co/5xTn2Zw/Rectangle-9.png') 30 stretch;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .task-button:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+        .container {
+            max-width: 360px;
+            width: 100%;
+            background-color: var(--container-bg-color);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 0 10px var(--box-shadow-color);
+            text-align: center;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-around;
+            background-color: var(--footer-bg-color);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 360px;
+        }
+        
+        .footer__item {
+            text-align: center;
+        }
+        
+        .footer__icon {
+            width: 30px;
+            height: 30px;
+            margin-bottom: 5px;
+        }
+        
+        .footer__text {
+            font-size: 1em;
+        }
+        a{
+            text-decoration: none;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="friends-screen">
+        <div class="invite-section">
+            <h1>Friends</h1>
+            <p>Invite friends and get more coins!</p>
+            <h2>For each invited:</h2>
+            <!-- Плейсхолдер для URL-изображения, который вы добавите -->
+            <img src="https://i.ibb.co/mNMGJfF/75.png" alt="Bonus" class="invite-button-placeholder">
+        </div>
+        <button class="copy-link-button" onclick="generateAndCopyReferralLink()">COPY REFERRAL LINK</button>
+    </div>
+    <footer class="footer">
+        <div class="footer__item">
+            <img src="game-icon.png" alt="Game" class="footer__icon">
+            <span class="footer__text"><a href="index.html">Game</a></span>
+        </div>
+        <div class="footer__item">
+            <img src="mine-icon.png" alt="Mine" class="footer__icon">
+            <span class="footer__text"><a href="mine.html">Mine</a></span>
+        </div>
+        <div class="footer__item">
+            <img src="tasks-icon.png" alt="Tasks" class="footer__icon">
+            <span class="footer__text"><a href="tasks.html">Tasks</a></span>
+        </div>
+        <div class="footer__item">
+            <img src="friends-icon.png" alt="Friends" class="footer__icon">
+            <span class="footer__text"><a href="Friends.html">Friends</a></span>
+        </div>
+        <div class="footer__item">
+            <img src="airdrop.png" alt="Airdrop" class="footer__icon">
+            <span class="footer__text"><a href="Airdrop.html">Airdrop</a></span>
+        </div>
+    </footer>
+</body>
+</html>

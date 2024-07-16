@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interface Example</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header__user-info">
+                <img src="coin3.png" alt="Avatar" class="header__avatar">
+                <span class="header__username" id="username">Axel Rabbit (Beta Version)</span>
+            </div>
+            <div class="header__settings">
+                <button class="header__settings-btn"><img src="settings-icon.png" alt="Settings"></button>
+                <button class="header__language-btn">EN</button>
+            </div>
+        </header>
+        <div class="stats">
+            <div class="stats__block">
+                <img src="https://avatars.mds.yandex.net/i?id=4df6d9c72a0f88c5ae0f47049e88d9726fd33132-5232915-images-thumbs&n=13" alt="Daily Reward" class="stats__icon">
+                <span class="stats__title">Daily reward </span>
+                <span class="stats__time">14:46</span>
+            </div>
+            
+            <div class="stats__block">
+                <img src="https://gitlab.cern.ch/uploads/-/system/project/avatar/155677/21607662.jpg" alt="Combo" class="stats__icon">
+                <span class="stats__title">Daily Combo</span>
+                <span class="stats__time">02:46</span>
+            </div>
+        </div>
+        
+        <div class="central-info">
+            <div class="central-info__coin">
+                <img src="mor.png" alt="Coin" class="central-info__coin-img">
+                <span id="coin-value" class="central-info__coin-value">0</span>
+            </div>
+            <div class="central-info__image">
+                <img id="lion-img" src="coin3.png" alt="Lion" class="central-info__lion-img" onclick="addPoint()">
+            </div>
+        </div>
+        <div class="energy">
+            <div class="energy__block">
+                <img src="energy-icon.png" alt="Energy" class="energy__icon">
+                <span id="energy-value" class="energy__value">1500/1500</span>
+            </div>
+            <div class="boost__block">
+                <a href="boost.html">
+                    <img src="boost-icon.png" alt="Boost" class="boost__icon">
+                    <span class="header__boost-btn"><a class="amam" href="boost.html">Boost</a></span>
+                </a>
+            </div>
+        </div>
+        <div class="mining">
+            <div class="mining__info">
+                <span class="mining__title">Mining in hour:</span>
+                <div class="mining__value">
+                    <img src="mor.png" alt="Coin" class="mining__icon">
+                    <span>120</span>
+                </div>
+                <div class="mining__time">
+                    <span>02:56:52</span>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="footer__item">
+                <img src="game-icon.png" alt="Game" class="footer__icon">
+                <span class="footer__text"><a href="index.html">Game</a></span>
+            </div>
+            <div class="footer__item">
+                <img src="mine-icon.png" alt="Mine" class="footer__icon">
+                <span class="footer__text"><a href="mine.html">Mine</a></span>
+            </div>
+            <div class="footer__item">
+                <img src="tasks-icon.png" alt="Tasks" class="footer__icon">
+                <span class="footer__text"><a href="tasks.html">Tasks</a></span>
+            </div>
+            <div class="footer__item">
+                <img src="friends-icon.png" alt="Friends" class="footer__icon">
+                <span class="footer__text"><a href="Friends.html">Friends</a></span>
+            </div>
+            <div class="footer__item">
+                <img src="airdrop.png" alt="Airdrop" class="footer__icon">
+                <span class="footer__text"><a href="Airdrop.html">Airdrop</a></span>
+            </div>
+        </footer>
+    </div>
+<script>
+    // Function to update UI and save data to localStorage
+function updateUIAndSaveData() {
+    // Update coin value
+    var coinValue = document.getElementById('coin-value');
+    var currentCoin = parseInt(coinValue.innerText) || 0;
+    coinValue.innerText = currentCoin;
+    localStorage.setItem('coinValue', currentCoin);
+
+    // Update energy value
+    var energyValue = document.getElementById('energy-value');
+    var currentEnergy = energyValue.innerText;
+    localStorage.setItem('energyValue', currentEnergy);
+}
+
+// Function to load data from localStorage
+function loadDataFromLocalStorage() {
+    var savedCoinValue = localStorage.getItem('coinValue');
+    var savedEnergyValue = localStorage.getItem('energyValue');
+
+    if (savedCoinValue !== null) {
+        document.getElementById('coin-value').innerText = savedCoinValue;
+    }
+
+    if (savedEnergyValue !== null) {
+        document.getElementById('energy-value').innerText = savedEnergyValue;
+    }
+}
+
+// Function to add points (coins) and manage energy
+function addPoint() {
+    // Update coin value
+    var coinValue = document.getElementById('coin-value');
+    var currentCoin = parseInt(coinValue.innerText) || 0;
+    coinValue.innerText = currentCoin + 1;
+
+    // Update energy value
+    var energyValue = document.getElementById('energy-value');
+    var energyText = energyValue.innerText;
+    var currentEnergy = parseInt(energyText.split('/')[0]) || 0;
+    var maxEnergy = parseInt(energyText.split('/')[1]) || 1500;
+
+    if (currentEnergy > 0) {
+        energyValue.innerText = (currentEnergy - 1) + '/' + maxEnergy;
+    }
+
+    // Save updated data to localStorage
+    updateUIAndSaveData();
+}
+
+// Function to regenerate energy every 2 seconds
+setInterval(function() {
+    var energyValue = document.getElementById('energy-value');
+    var energyText = energyValue.innerText;
+    var currentEnergy = parseInt(energyText.split('/')[0]) || 0;
+    var maxEnergy = parseInt(energyText.split('/')[1]) || 1500;
+
+    if (currentEnergy < maxEnergy) {
+        energyValue.innerText = (currentEnergy + 3) + '/' + maxEnergy;
+        
+        // Save updated data to localStorage
+        updateUIAndSaveData();
+    }
+}, 2000);
+
+// Load saved data when the page is loaded
+window.addEventListener('load', function() {
+    loadDataFromLocalStorage();
+});
+
+</script>
+    
+</body>
+</html>
