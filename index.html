@@ -1,1 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заполните форму</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #2c3e50;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    
+    .overlay {
+        background-color: rgba(0, 0, 0, 0.7);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .form-container {
+        background-color: #34495e;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        color: white;
+        width: 350px;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+    }
+    
+    .close-button {
+        background-color: #1abc9c;
+        border: none;
+        color: white;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+    
+    .upload-button {
+        background-color: #1abc9c;
+        border: none;
+        color: white;
+        padding: 10px;
+        margin: 5px 0 20px 0;
+        cursor: pointer;
+        border-radius: 5px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .tabs {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+    
+    .tab {
+        background-color: transparent;
+        border: none;
+        color: white;
+        padding: 5px;
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+    }
+    
+    .tab.active {
+        border-bottom: 2px solid #1abc9c;
+    }
+    
+    .radio-buttons {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 15px;
+    }
+    
+    .radio-buttons label {
+        display: flex;
+        align-items: center;
+        color: white;
+    }
+    
+    .radio-buttons input {
+        margin-right: 5px;
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea {
+        padding: 10px;
+        margin-bottom: 15px;
+        border: none;
+        border-radius: 5px;
+        width: 100%;
+        box-sizing: border-box;
+        background-color: #2c3e50;
+        color: white;
+    }
+    
+    textarea {
+        height: 60px;
+        resize: none;
+        overflow-y: auto;
+    }
+    
+    textarea::-webkit-scrollbar {
+        width: 6px;  /* Remove scrollbar space */
+        background: transparent;  /* Optional: just make scrollbar invisible */
+    }
+    
+    textarea {
+        scrollbar-width: none;  /* For Firefox */
+    }
+    
+    .date-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+    
+    .date-buttons button {
+        background-color: transparent;
+        border: none;
+        color: white;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+    
+    .button-container {
+        position: sticky;
+        bottom: 0;
+        background-color: #34495e;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-top: 10px;
+    }
+    
+    .submit-button {
+        background-color: #1abc9c;
+        border: none;
+        color: white;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        display: block;
+        width: 100%;
+    }
+    
+</style>
+<body>
+    <div class="overlay">
+        <div class="form-container">
+            <button class="close-button">Закрыть</button>
+            <h2>Заполните форму</h2>
+            <button class="upload-button">Загрузить</button>
+            <div class="tabs">
+                <button class="tab active">Клиент</button>
+                <button class="tab">Фирма</button>
+                <button class="tab">Сайт</button>
+                <button class="tab">Товары</button>
+                <button class="tab">Доставка</button>
+            </div>
+            <div class="radio-buttons">
+                <label><input type="radio" name="type" value="Физ">Физ</label>
+                <label><input type="radio" name="type" value="Юр" checked>Юр</label>
+                <label><input type="radio" name="type" value="ИП">ИП</label>
+            </div>
+            <label for="date">Дата *</label>
+            <input type="text" id="date" name="date" value="31.07.2024">
+            <div class="date-buttons">
+                <button>Вчера</button>
+                <button>Сегодня</button>
+                <button>Завтра</button>
+            </div>
+            <label for="order">Ордер *</label>
+            <input type="text" id="order" name="order">
+            <label for="organization">Имя организации *</label>
+            <input type="text" id="organization" name="organization">
+            <label for="address">Адрес заказчика *</label>
+            <textarea id="address" name="address"></textarea>
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email">
+            <label for="phone">Телефон *</label>
+            <input type="tel" id="phone" name="phone">
+            <label for="delivery-address">Адрес доставки *</label>
+            <textarea id="delivery-address" name="delivery-address"></textarea>
+            <label for="passport">Паспорт *</label>
+            <input type="text" id="passport" name="passport">
+            <div class="button-container">
+                <button class="submit-button">Сформировать</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
 
